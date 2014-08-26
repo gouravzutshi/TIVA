@@ -1,0 +1,68 @@
+
+int a=8;
+int b=9;
+int c=10;
+int d=11;
+
+void setup()
+{
+  
+  Serial.begin(115200);
+ pinMode(a, OUTPUT);
+ pinMode(b, OUTPUT);
+ pinMode(c, OUTPUT);
+ pinMode(d, OUTPUT);
+establishContact(); 
+}
+
+void loop()
+{
+  int tex; 
+   tex=Serial.read();
+   if(tex == 'A')
+   {
+   digitalWrite(a,LOW);
+   digitalWrite(b,HIGH);
+   digitalWrite(c,LOW);
+   digitalWrite(d,HIGH);
+
+   delay(2);
+
+   digitalWrite(a,HIGH);
+   digitalWrite(b,LOW);
+   digitalWrite(c,LOW);
+   digitalWrite(d,HIGH);
+
+   delay(2); 
+
+   digitalWrite(a,HIGH);
+   digitalWrite(b,LOW);
+   digitalWrite(c,HIGH);
+   digitalWrite(d,LOW);
+
+   delay(2); 
+
+   digitalWrite(a,LOW);
+   digitalWrite(b,HIGH);
+   digitalWrite(c,HIGH);
+   digitalWrite(d,LOW);
+
+   delay(2);
+  }
+  else if(tex == 'B')
+  {
+    digitalWrite(a,LOW);
+   digitalWrite(b,LOW);
+   digitalWrite(c,LOW);
+   digitalWrite(d,LOW);
+   delay(2); 
+  }
+  
+}
+
+void establishContact() {
+  while (Serial.available() <= 0) {
+    Serial.write('A');   // send a capital A
+    delay(30);
+  }
+}
