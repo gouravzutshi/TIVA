@@ -1,0 +1,45 @@
+#include<reg51.h>
+#define sequence1 0x01
+#define sequence2 0x08
+#define sequence3 0x04
+#define sequence4 0x02
+
+void delay(int);
+
+void main()
+    {
+		unsigned char direction;
+      
+      		while(1)
+		         {
+				direction=P3;
+				direction=direction & 0x08;
+				if(direction==0x08)
+				           {
+						P0=sequence1;
+						delay(2500);
+						P0=sequence2;
+						delay(2500);
+						P0=sequence3;
+						delay(2500);
+						P0=sequence4;
+						delay(2500);
+				            }
+				else
+				           {
+						P0=sequence4;
+						delay(2500);
+						P0=sequence3;
+						delay(2500);
+						P0=sequence2;
+						delay(2500);
+						P0=sequence1;
+						delay(2500);
+				           }  
+			   }
+                  }
+void delay(int delayvalue)
+     {
+  	 int i;
+   	for(i=0;i<delayvalue;i++);
+      }
